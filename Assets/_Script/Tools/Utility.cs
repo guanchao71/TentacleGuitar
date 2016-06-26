@@ -16,6 +16,7 @@ public class FileUtility {
 			StreamReader sr = File.OpenText(path);
 			string data = sr.ReadToEnd();
 			sr.Close();
+			sr.Dispose();
 			return data;
 		} catch (Exception) {
 			return "";
@@ -28,7 +29,9 @@ public class FileUtility {
 			StreamWriter sw = new StreamWriter(fs, Encoding.UTF8);
 			sw.Write(data);
 			sw.Close();
+			sw.Dispose();
 			fs.Close();
+			fs.Dispose();
 		} catch (Exception) {
 			return;
 		}

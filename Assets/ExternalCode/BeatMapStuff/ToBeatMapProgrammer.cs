@@ -47,7 +47,7 @@ public class BeatMapManager {
 	public static bool LoadBeatMap (string path) {
 
 		string data = FileUtility.ReadText(path);
-
+		
 		if (!string.IsNullOrEmpty(data)) {
 			var t = Assets.ExternalCode.WebApi.Game.ParseTabularAsync(data);
 			t.Wait();
@@ -150,9 +150,9 @@ public class BeatMapManager {
 					Stage.SetTrackHightLight(i, i >= minX && i <= maxX);
 					Stage.SetFretWireLight(i, i >= minX && i - 1 <= maxX);
 				}
-				for (int i = 0; i < 6; i++) {
-					Stage.SetStringLight(i, stringLighted[i]);
-				}
+			}
+			for (int i = 0; i < 6; i++) {
+				Stage.SetStringLight(i, stringLighted[i]);
 			}
 
 			

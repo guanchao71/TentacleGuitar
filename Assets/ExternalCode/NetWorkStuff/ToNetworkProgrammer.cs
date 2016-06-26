@@ -143,7 +143,7 @@ public class NetworkManager
             yield return new WaitForSeconds(0.01f);
         }
         FileUtility.WriteText(
-            t1.Result,
+            JsonHelper.FormatJson(t1.Result),
             Application.persistentDataPath + "/" + id + "/BeatMap.json"
         );
 
