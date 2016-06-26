@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TentacleGuitarUnity;
+using AssemblyCSharp;
 
 /// <summary>
 /// 
@@ -47,7 +48,7 @@ public class BeatMapManager {
 	public static bool LoadBeatMap (string path) {
 
 		string data = FileUtility.ReadText(path);
-		
+
 		if (!string.IsNullOrEmpty(data)) {
 			var t = Assets.ExternalCode.WebApi.Game.ParseTabularAsync(data);
 			t.Wait();
@@ -64,7 +65,8 @@ public class BeatMapManager {
 							Mathf.Clamp(n.Fret - 1, 0, 23),
 							n.String - 1,
 							(float)noteList.Key / 1000f + offset,
-							n.Fret == 0 ? NoteInfo.NoteType.Zero : NoteInfo.NoteType.Tap
+							n.Fret == 0 ? NoteInfo.NoteType.Zero : NoteInfo.NoteType.Tap,
+							NotesMap.notes.IndexOf(n.Pitch)
 						));
 					}
 				}
@@ -150,9 +152,9 @@ public class BeatMapManager {
 					Stage.SetTrackHightLight(i, i >= minX && i <= maxX);
 					Stage.SetFretWireLight(i, i >= minX && i - 1 <= maxX);
 				}
-			}
-			for (int i = 0; i < 6; i++) {
-				Stage.SetStringLight(i, stringLighted[i]);
+				for (int i = 0; i < 6; i++) {
+					Stage.SetStringLight(i, stringLighted[i]);
+				}
 			}
 
 			
